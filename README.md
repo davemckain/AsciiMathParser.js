@@ -12,12 +12,12 @@ your own code.
 Doing this had always seemed like a good idea to me - if you're interested
 you can read more about my rationale at:
 
-(http://davemckain.blogspot.co.uk/2011/03/asciimathparserjs-released.html)
+http://davemckain.blogspot.co.uk/2011/03/asciimathparserjs-released.html
 
 Download and Contact
 ====================
 
-This code may be downloaded from (https://github.com/davemckain/AsciiMathParser.js)
+This code may be downloaded from https://github.com/davemckain/AsciiMathParser.js
 
 You can contact me at david.mckain \[at\] ed \[dot\] ac \[dot\] uk
 
@@ -45,8 +45,9 @@ this even easier for you:
 If you're using this code in a non-browser environment, you may have access to
 a reasaonable DOM implementation that you can use. If not you may have to build your
 own. One thing that certainly works is using a Java `org.w3c.dom.Document` object
-and calling this code via the Rhino JavaScript engine. (In this case, I suggest you
-use my `asciimath-parser` Java code to simplify this for you.)
+and calling this code via the Rhino JavaScript engine. (In this particular
+case, I suggest you use my `asciimath-parser` Java code to simplify this for
+you.)
 
 2. Create a parser
 ------------------
@@ -79,7 +80,7 @@ MathML objects. If you think the DOM is too complicated and would rather have
 an XML string, then the `AsciiMathParserBrowserUtilities.js` utility class has
 a couple of functions which might be useful:
 
-  var mathmlString = AsciiMathParserBrowserUtilities.serializeXmlNode(mathElement);
-  var nicerMathmlString = AsciiMathParserBrowserUtilities.indentMathmlString(mathmlString);
+    var mathmlString = AsciiMathParserBrowserUtilities.serializeXmlNode(mathElement);
+    var nicerMathmlString = AsciiMathParserBrowserUtilities.indentMathmlString(mathmlString);
 
 That's pretty much all there is to say. Enjoy!
