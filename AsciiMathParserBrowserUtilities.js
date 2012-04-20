@@ -32,7 +32,7 @@ AsciiMathParser.js
 
 AsciiMathParserBrowserUtilities = {
 
-    createXMLDocument: function() {
+    createXmlDocument: function() {
         var doc;
         if (document.implementation && document.implementation.createDocument) {
             /* Gecko, Webkit, Opera */
@@ -50,7 +50,7 @@ AsciiMathParserBrowserUtilities = {
         return doc;
     },
 
-    serializeXMLNode: function(node) {
+    serializeXmlNode: function(node) {
         var xml;
         try {
             /* Gecko, Webkit, Opera */
@@ -69,7 +69,7 @@ AsciiMathParserBrowserUtilities = {
         return xml;
     },
 
-    indentMathMLString: function(str) {
+    indentMathmlString: function(str) {
         var indent = arguments[1] || 2;
         var newline = arguments[2] || "\n";
 
