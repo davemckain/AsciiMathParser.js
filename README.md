@@ -3,29 +3,31 @@ Introduction
 
 AsciiMathParser.js is a cut-down, modified and encapsulated version of Peter
 Jipsen's ASCIIMathML.js v2.1 code that contains only the logic for parsing
-ASCIIMath math expressions into MathML, building a DOM &lt;math&gt; Element.
+ASCIIMath math expressions into MathML.
 
-As a result, the ASCIIMath parsing code is no longer tied to a browser, making
-it easier to use in other contexts (e.g. on the server) or to integrate into
-your own code.
+This decouples the ASCIIMath parsing code so that is no longer tied to being
+run in a browser, opening it up for developers to use it in lots of interesting
+ways, such as:
 
-Doing this had always seemed like a good idea to me - if you're interested
-you can read more about my rationale at:
+* Integrating ASCIIMath input syntax with a different browser display engine, such as MathJax.
+* Using ASCIIMath outside the browser.
+* Unit testing the ASCIIMath parser.
+
+If you're interested, you can read more about my rationale behind this at:
 
 http://davemckain.blogspot.co.uk/2011/03/asciimathparserjs-released.html
 
-Download and Contact
-====================
+Download
+========
 
 This code may be downloaded from https://github.com/davemckain/AsciiMathParser.js
 
-You can contact me at david.mckain \[at\] ed \[dot\] ac \[dot\] uk
+Demo
+====
 
-License
-=======
+You can play around with this parser in the following simple demo:
 
-Peter Jipsen's original ASCIIMathML.js code is LGPL licensed, so I've preserved
-that here.
+http://www2.ph.ed.ac.uk/mathplayground/asciimath-parser/
 
 Usage
 =====
@@ -40,10 +42,13 @@ this even easier for you:
 
     var document = AsciiMathParserBrowserUtilities.createXmlDocument();
 
-(This should work in most modern browsers. If it doesn't, let me know and I'll fix it!)
+(This should work in most modern browsers, including suitably recent versions of
+Firefox, Internet Explorer, Chrome, Safari and Opera. If it doesn't, let me know and I'll
+have a look. I've tried to make sure it works with Microsoft's slightly lacking DOM implementation,
+but haven't been able to check many versions of MSXML.)
 
 If you're using this code in a non-browser environment, you may have access to
-a reasaonable DOM implementation that you can use. If not you may have to build your
+a reasonable DOM implementation that you can use. If not you may have to build your
 own. One thing that certainly works is using a Java `org.w3c.dom.Document` object
 and calling this code via the Rhino JavaScript engine. (In this particular
 case, I suggest you use my `asciimath-parser` Java code to simplify this for
@@ -70,7 +75,15 @@ return a MathML &lt;math&gt; DOM Element Object:
 
     var mathElement = asciiMathParser.parseAsciiMathInput("ax^2 + bx + c");
 
-You can call this method as many times as you like.
+You can call this method as many times as you like. You may pass an optional
+second argument to pass additional options to the compiler. If present, this
+argument should be a Java object containing some of the following values:
+
+* `displayMode: true|false`: if true, a `display="block"` attribute will be added
+to the resulting <math> element.
+* `addSourceAnnotation (true|false)`: If true, a MathML `<annotation
+encoding="ASCIIMathInput">` element will be added to the resulting MathML that
+contains the original ASCIIMath input.
 
 4. Do something fabulous with your MathML
 -----------------------------------------
@@ -83,4 +96,26 @@ a couple of functions which might be useful:
     var mathmlString = AsciiMathParserBrowserUtilities.serializeXmlNode(mathElement);
     var nicerMathmlString = AsciiMathParserBrowserUtilities.indentMathmlString(mathmlString);
 
-That's pretty much all there is to say. Enjoy!
+That's pretty much all there is to it. Enjoy!
+
+Limitations
+-----------
+
+* This code only parses ASCIIMath input syntax. There is currently no support for
+its LaTeX input syntax, or its SVG/graphics features. (It would probably not be
+too hard to add these in future, though...)
+
+* The MathML generated doesn't include any of the extra attributes and
+styling that ASCIIMathML adds. You can add these yourself if needed by
+manipulating the resulting MathML Element.
+
+License
+=======
+
+Peter Jipsen's original ASCIIMathML.js code is LGPL licensed, so I've preserved
+that here.
+
+Author
+======
+
+You can contact me at david \[dot\] mckain \[at\] ed \[dot\] ac \[dot\] uk
