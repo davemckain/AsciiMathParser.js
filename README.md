@@ -12,9 +12,9 @@ ways, such as:
 * Using ASCIIMath outside the browser.
 * Unit testing the ASCIIMath parser.
 
-# Warning
+# Warning!
 
-This code was developed in 2010/2011 and hasn't been updated since then. 
+This code was developed in 2010/2011 and hasn't been updated since then.
 
 # Download
 
@@ -100,6 +100,11 @@ its LaTeX input syntax, or its SVG/graphics features.
 * The MathML generated doesn't include any of the extra attributes and
 styling that ASCIIMathML adds. You can add these yourself if needed by
 manipulating the resulting MathML Element.
+  
+# Original ASCIIMathML.js code information
+
+This code is based on v2.1 of the original ASCIIMathML.js code, which can be accessed from:
+https://github.com/asciimath/asciimathml/commit/7afc51428eb2192d07f8ec61ac05b70de6c040dd
 
 # License
 
