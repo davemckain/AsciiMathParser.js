@@ -10,13 +10,13 @@ under the terms of the GNU Lesser General Public License as published by the
 Free Software Foundation; either version 3 of the License, or (at your
 option) any later version.
 
-AsciiMathParser.js is distributed in the hope that it will be useful, but WITHOUT
+AsciiMathParser is distributed in the hope that it will be useful, but WITHOUT
 ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License (at
 http://www.gnu.org/licences/lgpl.html) for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with AsciiMathParser.js. If not, see <http://www.gnu.org/licenses/lgpl.html>.
+along with AsciiMathParser. If not, see <http://www.gnu.org/licenses/lgpl.html>.
 
 AsciiMathParser.js
 ==================
@@ -29,8 +29,11 @@ This may allow you to integrate the ASCIIMath input format with
 other software and does not need to be run in a browser.
 
 The only requirement is that you can provide a DOM Document Object
-when creating a parser. (Microsoft's implementation of Document is fine
-too.)
+when creating a parser. (Microsoft's implementation of Document used to
+be fine too, but this has NOT BEEN TESTED FOR A LONG TIME!)
+
+This code version is based on commit 7afc514 of asciimath/asciimathml, which can be accessed via:
+https://github.com/asciimath/asciimathml/commit/7afc51428eb2192d07f8ec61ac05b70de6c040dd
 
 */
 
@@ -39,12 +42,15 @@ too.)
 /* This creates a new Object that you can use to parse ASCIIMath input.
  *
  * You must pass a DOM Document Object here that will be used to create
- * new DOM Nodes. The Doucument itself will not be modified.
- * A Microsoft DOM is acceptable.
+ * new DOM Nodes. The Document itself will not be modified.
+ * A Microsoft DOM is probably acceptable BUT THIS HAS NOT BEEN TESTED FOR A LONG TIME!
  */
 function AsciiMathParser(document) {
 
-/* ASCIIMathML.js BEGINS BELOW.
+/* ORIGINAL ASCIIMathML.js v2.1 BEGINS BELOW.
+ *
+ * The original source for this can be downloaded from:
+ * https://raw.githubusercontent.com/asciimath/asciimathml/7afc51428eb2192d07f8ec61ac05b70de6c040dd/ASCIIMathML.js
  *
  * NOTE: I did a global search and replace to make NodeList traversal
  * work with the Java DOM, so that childNodes[i] -> childNodes.item(i).
@@ -85,7 +91,7 @@ Extensive clean-up and improvements by Paulo Soares, Oct 2007.
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation; either version 3 of the License, or (at
+the Free Software Foundation; either version 2.1 of the License, or (at
 your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT 
@@ -396,7 +402,6 @@ function define(oldstr,newstr) {
                                  tex:null, ttype:DEFINITION}]);
   refreshSymbols(); // this may be a problem if many symbols are defined!
 }
-
 
 function AMremoveCharsAndBlanks(str,n) {
 //remove n characters and any following blanks
