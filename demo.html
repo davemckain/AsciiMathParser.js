@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="David McKain">
+    <title>AsciiMathParser.js demo</title>
+    <script src="AsciiMathParser.js"></script>
+    <script src="AsciiMathParserBrowserUtilities.js"></script>
+    <script>//<![CDATA[
+
+    function runDemo() {
+        var asciiMathInput = document.getElementById('asciiMathInput').value;
+
+        var domDocument = AsciiMathParserBrowserUtilities.createXmlDocument();
+        var asciiMathParser = new AsciiMathParser(domDocument);
+        var mathElement = asciiMathParser.parseAsciiMathInput(asciiMathInput);
+        var mathMLString = AsciiMathParserBrowserUtilities.serializeXmlNode(mathElement);
+        var indented = AsciiMathParserBrowserUtilities.indentMathmlString(mathMLString);
+
+        document.getElementById('output').textContent = indented;
+        return false;
+    }
+
+    window.onload = runDemo;
+
+    //]]></script>
+  </head>
+  <body>
+
+  <h1>ASCIIMathParser.js demo</h1>
+
+  <p>
+    Type some ASCIIMath input into the box below and hit "Parse"
+    to see the generated MathML.
+  </p>
+
+  <h2>Input ASCIIMath</h2>
+
+  <form action="AsciiMathParserDemo.jsp" class="input" onsubmit="return runDemo()">
+    <div class="inputBox">
+      <input id="asciiMathInput" name="asciiMathInput" type="text" value="sinx/cosy">
+      <input type="button" value="Parse" onclick="runDemo()">
+    </div>
+  </form>
+
+  <h3>Output MathML</h3>
+  <pre id="output">&#xa0;</pre>
+
+  </body>
+</html>
